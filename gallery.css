@@ -1,6 +1,11 @@
 body {
 	padding-top: 30px;
-	background-color: black;
+	background-color: #282828;
+	color: #E8e8e8;
+}
+
+.row{
+	margin-bottom: 15px;
 }
 
 #title {
@@ -67,4 +72,9 @@ body {
 @font-face {
 	font-family: "glyphicons halflings regular";
 	src: url("./MyWEBSITe/font/glyphicons-halflings-regular.woff");
+}
+
+.thumbnail {
+    background: #383838;
+		border: 1px solid #383838;
 }

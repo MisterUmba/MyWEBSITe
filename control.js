@@ -1,15 +1,4 @@
 $(document).ready(function(){
-  // $("#btn1").click(function(){
-  //   $("#test1").text("Height"+$("test1").innerHeight);
-  // });
-  // $("#btn2").click(function(){
-  //   $("#test2").html("<b>Hello world!</b>");
-  // });
-  // $("#btn3").click(function(){
-  //   $("#test3").val("Dolly Duck");
-  // });
-
-  //let head = $("#head");
 
   // Controls Size of upper picture
   $("#head").height($(window).height());
@@ -19,8 +8,22 @@ $(document).ready(function(){
       $("#head").height($(window).height());
   })
 
-  // Location of title and subtitle
-  //$("#title").css("margin-top", Math.floor($(window).height()*(1/4)));
+  // Downloading  the .jar files
+  $("#astroidGame").click(function(e){
+    e.preventDefault();
+    window.location.href = "projects/Physics_Game.jar";
+  });
+
+  $("#snakeGame").click(function(e){
+    e.preventDefault();
+    window.location.href = "projects/HenriSnake.jar";
+  });
+
+  $("#tictactoeGame").click(function(e){
+    e.preventDefault();
+    window.location.href = "projects/Tic_Tac_Toe.jar";
+  });
+
 
   // Randomly pic the picture
   // let pictureArray = {0:"https://www.nasa.gov/sites/default/files/thumbnails/image/iss056e201322.jpg",
