@@ -24,10 +24,9 @@ $(document).ready(function(){
     window.location.href = "projects/Tic_Tac_Toe.jar";
   });
 
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //console.log(navigator.userAgent);
+    $("#centerAnimation").css("margin-left", "40%");
+  }
 
-  // Randomly pic the picture
-  // let pictureArray = {0:"https://www.nasa.gov/sites/default/files/thumbnails/image/iss056e201322.jpg",
-  //                     1:"https://www.nasa.gov/sites/default/files/thumbnails/image/45532312914_2634bd334e_k.jpg",
-  //                     2:"https://solarsystem.nasa.gov/system/resources/detail_files/17504_PIA21046_MAIN.jpg"}
-  // $("#head").css("background-image","url("+pictureArray[Math.floor(Math.random()*3)]+")");
 });
