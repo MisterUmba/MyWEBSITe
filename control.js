@@ -24,9 +24,12 @@ $(document).ready(function(){
     window.location.href = "projects/Tic_Tac_Toe.jar";
   });
 
+  // Make
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    //console.log(navigator.userAgent);
     $("#centerAnimation").css("margin-left", "40%");
+    $("#tictactoeGame").hide();
+    $("#snakeGame").hide();
+    $("#astroidGame").hide();
   }
 
 });
