@@ -2,6 +2,12 @@ body {
 	padding-top: 30px;
 	background-color: #282828;
 	color: #E8e8e8;
+	font-family: "Archivo Narrow";
+	font-size: 16px;
+}
+
+strong{
+	font-family: "Archivo Black";
 }
 
 .row{
@@ -52,6 +58,13 @@ body {
 	bottom: 0;
 	margin-left: 50%;
 }
+
+#pro{
+	font-size: 50px;
+	font-family: "Archivo Black";
+	padding-top: 75px;
+}
+
 
 @keyframes more {
 	0%{ color: #000000; padding-bottom: 10px;}
