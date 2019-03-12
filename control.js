@@ -30,6 +30,14 @@ $(document).ready(function(){
     $("#tictactoeGame").hide();
     $("#snakeGame").hide();
     $("#astroidGame").hide();
+
+
   }
+
+  $('.nav a').on('click', function(){
+    if($(window).width() <= 767)
+      $('.navbar-toggle').click(); //bootstrap 3.x by Richard
+    //$('.navbar-toggler').click(); //bootstrap 4.x
+  });
 
 });
