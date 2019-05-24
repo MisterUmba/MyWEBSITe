@@ -1,94 +1,70 @@
-/**
- * Authore: Henri M. Umba
- * Email: umbamw@gmail.com
- *
- * Feedback is well appricated
- */
-class Node {
-    constructor(x1, y1) {
-        this.x = x1;
-        this.y = y1;
-    }
-
-    move(x, y){
+class Node{
+    constructor(x, y){
         this.x = x;
         this.y = y;
+        this.w = 10;
+        this.h = 10;
     }
 }
 
-class Snake{
-    constructor(){
-        this.head = new Node(10,10);
-        this.direction = new Node(0, 1);
-        this.body = [this.head];
-    }
+let head = new Node(0,0);
+let dir = new Node(0,0);
+let body = [head];
 
-    add(x){
-        this.body.push(x);
-    }
+const canvas = document.getElementById("canvas");
+const pen = canvas.getContext("2d");
 
-    move(){
-            this.head.x += this.direction.x;
-            this.head.y += this.direction.y;
+let coin = new Node(5+Math.floor(Math.random()*(canvas.width-10)), 5+Math.floor(Math.random()*(canvas.height-10)));
 
-            let temp = this.head;
-            for(let x in this.body){
-                if(x!==this.head){
-                    this.body[x].x = this.head.x;
-                    this.body[x].y = this.head.y;
-                    temp = this.body[x];
-                }
-            }
-    }
+function draw(){
+    //clean();
+    pen.fillStyle = 'white';
+    pen.fillRect(head.x, head.y, head.w, head.h);
 
-    toString(){
-        console.log(this);
-    }
-
+    pen.fillStyle = 'gold';
+    pen.fillRect(coin.x, coin.y, coin.w, coin.h);
 }
 
-class View{
-    constructor(snk){
-        const canvas = document.getElementById('canvas');
-        this.snake = snk;
-        this.pan = canvas.getContext('2d');
+function clean(){
+    pen.fillStyle = "black";
+    pen.fillRect(0,0,canvas.width, canvas.height);
+}
+
+function update(){
+    if(head.x==coin.x && head.y==coin.y){
+        coin.x = 5+Math.floor(Math.random()*(canvas.width-10));
+        coin.y = 5+Math.floor(Math.random()*(canvas.height-10));
+    }
+    
+    head.x+=dir.x;
+    head.y+=dir.y;
+
+    
+}
+
+function mainLoop(){
+    update();
+    draw();
+}
+
+function events(key){
+    if(key.code==="KeyW"){
+        dir.x = 0; dir.y =- 10;
     }
 
-    draw(){
-        this.clearScreen();
+    if(key.code==="KeyS"){
+        dir.x = 0; dir.y =+ 10;
+    }
+    if(key.code==="KeyD"){
+        dir.x =+ 10; dir.y = 0;
     }
 
-    clearScreen(){
-        this.pen.fillStyle = 'black';
-        this.pen.fillRec(0,0,this.canvas.width, this.canvas.height);
+    if(key.code==="KeyA"){
+        dir.x =- 10; dir.y = 0;
     }
 }
 
-class Control{
-    constructor(){
-        this.snake = new Snake();
-        this.snake.add(new Node(this.snake.head.x, this.snake.head.y));
-        this.view = new View(this.snake);
-    }
+document.addEventListener("keydown", events);
 
-    update(){
-        this.snake.move();
-    }
-
-    toString(){
-        this.snake.toString();
-    }
-
-
-}
-
-let con = new Control();
-con.mainGameLoop = function(){
-    con.update();
-    con.view.draw();
-    console.log(this);
-    con.toString();
-    requestAnimationFrame(con.mainGameLoop);
-}
-
-requestAnimationFrame(con.mainGameLoop);
+clean();
+setInterval(mainLoop, 1000/30);
