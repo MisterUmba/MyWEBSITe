@@ -123,7 +123,7 @@ function events(key){
     }
 }
 
-document.addEventListener("keyup", events);
+document.addEventListener("keydown", events);
 
 clean();
 setInterval(mainLoop, 1000/15);
