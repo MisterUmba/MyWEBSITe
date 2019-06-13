@@ -5,14 +5,28 @@ class Node{
         this.w = 1;
         this.h = 1;
     }
+
+    set(x, y){
+        this.x = x;
+        this.y = y;
+    }
 }
 
 head = new Node(0,0);
 let dir = new Node(0,0);
+let moveDir = "down";
+
 let body = [head];
 let HEIGHT = 45;
 let WIDTH = 60;
 let scale = 10;
+
+let movements = {
+    LEFT : "left",
+    RIGHT : "right",
+    UP : "up",
+    DOWN : "down"
+}
 
 let gameOver = false;
 
@@ -56,7 +70,7 @@ function update(){
             coin.x = 5+Math.floor(Math.random()*(WIDTH-10));
             coin.y = 5+Math.floor(Math.random()*(HEIGHT-10));
         }
-        //for(let x = 0; x<100; x++)
+        for(let x = 0; x<2; x++)
             body.push(new Node(head.x, head.y));
     }
     
@@ -107,23 +121,46 @@ function OutofBounds(){
 }
 
 function events(key){
+    let temp = undefined;
     if(key.code==="KeyW"){
-        dir.x = 0; dir.y =- 1;
+        temp = movements.UP;
     }
 
     if(key.code==="KeyS"){
-        dir.x = 0; dir.y =+ 1;
+        temp = movements.DOWN;
     }
     if(key.code==="KeyD"){
-        dir.x =+ 1; dir.y = 0;
+        temp = movements.RIGHT;
     }
 
     if(key.code==="KeyA"){
-        dir.x =- 1; dir.y = 0;
+        temp = movements.LEFT;
+    }
+
+    if(moveDir == movements.UP || moveDir == movements.DOWN && temp == movements.LEFT || temp == movements.RIGHT){
+            moveDir = temp;
+    }
+    if(moveDir == movements.RIGHT || moveDir == movements.LEFT && temp == movements.UP || temp == movements.DOWN){
+            moveDir = temp;
+    }
+
+    switch(moveDir){
+        case "up":
+            dir.x = 0; dir.y = -1;
+            break;
+        case "down":
+            dir.x = 0; dir.y = +1;
+            break;
+        case "left":
+            dir.x = -1; dir.y = 0;
+            break;
+        case "right":
+            dir.x = 1; dir.y = 0;
+            break;
     }
 }
 
 document.addEventListener("keydown", events);
 
 clean();
-setInterval(mainLoop, 1000/15);
+setInterval(mainLoop, 1000/10);

@@ -14,6 +14,12 @@ $(document).ready(function(){
     window.location.href = "projects/Physics_Game.jar";
   });
 
+  // Downloading KeyStroker exe file
+  $("#keystroke").click(function(e){
+    e.preventDefault();
+    window.location.href = "projects/KeyStroke.exe";
+  });
+
   $("#snakeGame").click(function(e){
     e.preventDefault();
     window.location.href = "projects/HenriSnake.jar";
