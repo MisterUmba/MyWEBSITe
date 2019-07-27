@@ -33,7 +33,7 @@ strong{
 }
 
 #head {
-    background-image: url("https://www.nasa.gov/sites/default/files/thumbnails/image/45532312914_2634bd334e_k.jpg");
+    background-image: url("upAndUp.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -94,4 +94,20 @@ strong{
 .thumbnail {
     background: #383838;
 		border: 1px solid #383838;
+}
+
+.footer {
+	background-color: #222;
+	border-top: 1px solid #101010;
+	vertical-align: middle;
+	color: #101010;
+}
+
+.footer-icons {
+	/* font-size: 24px; */
+	margin: 2% 1% 0% 1%;
+}
+
+.footer a{
+	color:inherit;
 }
