@@ -5,11 +5,6 @@ class Node{
         this.w = 1;
         this.h = 1;
     }
-
-    set(x, y){
-        this.x = x;
-        this.y = y;
-    }
 }
 
 head = new Node(0,0);
@@ -39,6 +34,7 @@ let coin = new Node(5+Math.floor(Math.random()*(WIDTH-10)), 5+Math.floor(Math.ra
 
 function draw(){
     clean();
+
     pen.fillStyle = 'white';
     for(let x = 0; x<body.length; x++){
         pen.fillRect(body[x].x*scale, body[x].y*scale, body[x].w*scale, body[x].h*scale);
@@ -47,9 +43,18 @@ function draw(){
     pen.fillStyle = 'gold';
     pen.fillRect(coin.x*scale, coin.y*scale, coin.w*scale, coin.h*scale);
 
-    if(!gameOver){
+    //test
+    pen.fillStyle = 'red';
+    pen.fillRect(head.x*scale, head.y*scale, head.w*scale, head.h*scale);
+    //end test
+
+    if(gameOver){
+        pen.strokeStyle = 'red';
         pen.fillStyle = 'red';
-        pen.stroke
+        pen.font = "50px monospace";
+        pen.textAlign = 'center';
+        let line = "Game Over!";
+        pen.fillText(line, canvas.width/2, canvas.height/2);
     }
 }
 
@@ -82,8 +87,8 @@ function update(){
     let kx = undefined;
     let ky = undefined;
     for(let x = 0; x<body.length; x++){
-        if(body[x]==head){
-            
+        if(body[x].x == head.x && body[x].y == head.y && body[x] != dir && body[x] != head){
+            gameOver = true;
         }
             kx = body[x].x;
             ky = body[x].y;
@@ -98,10 +103,10 @@ function update(){
 }
 
 function mainLoop(){
-   if(!gameOver)
+   if(!gameOver){
     update();
+   }
     draw();
-   
 }
 
 function collision(p){
@@ -115,7 +120,7 @@ function collision(p){
 
 
 function OutofBounds(){
-    if(head.x > WIDTH-1 || head.x < 0 || head.y < 0 || head.y > HEIGHT-1)
+    if(head.x > WIDTH || head.x < 0 || head.y < 0 || head.y > HEIGHT-1)
         return true;
     return false;
 }
@@ -137,10 +142,10 @@ function events(key){
         temp = movements.LEFT;
     }
 
-    if(moveDir == movements.UP || moveDir == movements.DOWN && temp == movements.LEFT || temp == movements.RIGHT){
+    if((moveDir == movements.UP || moveDir == movements.DOWN) && (temp == movements.LEFT || temp == movements.RIGHT)){
             moveDir = temp;
     }
-    if(moveDir == movements.RIGHT || moveDir == movements.LEFT && temp == movements.UP || temp == movements.DOWN){
+    if((moveDir == movements.RIGHT || moveDir == movements.LEFT) && (temp == movements.UP || temp == movements.DOWN)){
             moveDir = temp;
     }
 
@@ -163,4 +168,4 @@ function events(key){
 document.addEventListener("keydown", events);
 
 clean();
-setInterval(mainLoop, 1000/10);
+setInterval(mainLoop, 1000/15);
