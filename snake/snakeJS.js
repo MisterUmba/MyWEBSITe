@@ -15,6 +15,7 @@ let body = [head];
 let HEIGHT = 45;
 let WIDTH = 60;
 let scale = 10;
+let score = 0;
 
 let movements = {
     LEFT : "left",
@@ -56,6 +57,11 @@ function draw(){
         let line = "Game Over!";
         pen.fillText(line, canvas.width/2, canvas.height/2);
     }
+
+    pen.fillStyle = 'red';
+    pen.font = "50px monospace";
+    pen.textAlign = 'center';
+    pen.fillText(score, canvas.width/2, canvas.height*0.20);
 }
 
 function clean(){
@@ -77,6 +83,7 @@ function update(){
         }
         for(let x = 0; x<2; x++)
             body.push(new Node(head.x, head.y));
+        score += 100;
     }
     
     head.x+=dir.x;
@@ -103,9 +110,9 @@ function update(){
 }
 
 function mainLoop(){
-   if(!gameOver){
-    update();
-   }
+    if(!gameOver){
+        update();
+    }
     draw();
 }
 
@@ -126,19 +133,20 @@ function OutofBounds(){
 }
 
 function events(key){
+
     let temp = undefined;
-    if(key.code==="KeyW"){
+    if(key.code==="KeyW" || key.code==="ArrowUp"){
         temp = movements.UP;
     }
 
-    if(key.code==="KeyS"){
+    if(key.code==="KeyS" || key.code==="ArrowDown"){
         temp = movements.DOWN;
     }
-    if(key.code==="KeyD"){
+    if(key.code==="KeyD" || key.code==="ArrowRight"){
         temp = movements.RIGHT;
     }
 
-    if(key.code==="KeyA"){
+    if(key.code==="KeyA" || key.code==="ArrowLeft"){
         temp = movements.LEFT;
     }
 
@@ -168,4 +176,16 @@ function events(key){
 document.addEventListener("keydown", events);
 
 clean();
-setInterval(mainLoop, 1000/15);
+
+let game = document.getElementById("game");
+game.style.display = "none";
+
+function startGame(){
+    if(game.style.display === "none"){
+        game.style.display = "block";
+    }else{
+        game.style.display = "none";
+    }
+    setInterval(mainLoop, 1000/15);  
+}
+
