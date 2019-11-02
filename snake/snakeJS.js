@@ -5,6 +5,11 @@ class Node{
         this.w = 1;
         this.h = 1;
     }
+
+    setLocal(x, y){
+        this.x = x;
+        this.y = y;
+    }
 }
 
 head = new Node(0,0);
@@ -44,10 +49,8 @@ function draw(){
     pen.fillStyle = 'gold';
     pen.fillRect(coin.x*scale, coin.y*scale, coin.w*scale, coin.h*scale);
 
-    //test
     pen.fillStyle = 'red';
     pen.fillRect(head.x*scale, head.y*scale, head.w*scale, head.h*scale);
-    //end test
 
     if(gameOver){
         pen.strokeStyle = 'red';
@@ -56,6 +59,11 @@ function draw(){
         pen.textAlign = 'center';
         let line = "Game Over!";
         pen.fillText(line, canvas.width/2, canvas.height/2);
+        
+        pen.font = "20px monospace";
+        pen.fillStyle = "gold";
+        line = "Click here to restart game";
+        pen.fillText(line, canvas.width/2, (canvas.height*5)/8);
     }
 
     pen.fillStyle = 'red';
@@ -133,6 +141,9 @@ function OutofBounds(){
 }
 
 function events(key){
+    if(key.code === "ArrowDown"){
+        key.preventDefault();
+    }
 
     let temp = undefined;
     if(key.code==="KeyW" || key.code==="ArrowUp"){
@@ -173,19 +184,29 @@ function events(key){
     }
 }
 
+function restartGame(){
+    head.setLocal(0, 0);
+    body = [head];
+    moveDir = "down";
+    score = 0;
+
+    let fakeKey = {
+        code : "KeyS"
+    }
+    events(fakeKey)
+    gameOver = false;
+}
+
 document.addEventListener("keydown", events);
+document.addEventListener("mousedown", function(ev){
+    let target = ev.target;
+    if(target === canvas && gameOver){
+        restartGame();
+    }
+})
 
 clean();
 
-let game = document.getElementById("game");
-game.style.display = "none";
-
-function startGame(){
-    if(game.style.display === "none"){
-        game.style.display = "block";
-    }else{
-        game.style.display = "none";
-    }
+window.onload = function(){
     setInterval(mainLoop, 1000/15);  
 }
-
