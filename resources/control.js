@@ -8,6 +8,12 @@ $(document).ready(function(){
       $("#head").height($(window).height());
   })
 
+  // Press button to play Snake Online version
+  $("#snake_game_javascript_version").click(function(e){
+    e.preventDefault();
+    window.location.href = "./snake/Snakegame.html"
+  });
+
   // Downloading  the .jar files
   $("#astroidGame").click(function(e){
     e.preventDefault();
