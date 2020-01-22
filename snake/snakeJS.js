@@ -62,7 +62,7 @@ function draw(){
         
         pen.font = "20px monospace";
         pen.fillStyle = "gold";
-        line = "Click here to restart game";
+        line = "Press SPACE to restart game";
         pen.fillText(line, canvas.width/2, (canvas.height*5)/8);
     }
 
@@ -141,6 +141,9 @@ function OutofBounds(){
 }
 
 function events(key){
+    if(key.code === "Space"){
+        restartGame(key)
+    }
     if(key.code === "ArrowDown"){
         key.preventDefault();
     }
@@ -184,26 +187,25 @@ function events(key){
     }
 }
 
-function restartGame(){
-    head.setLocal(0, 0);
-    body = [head];
-    moveDir = "down";
-    score = 0;
-
-    let fakeKey = {
-        code : "KeyS"
+function restartGame(ev){
+    console.log(ev.code);
+    let target = ev.target;
+    if(/*target === canvas &&*/ gameOver){
+        head.setLocal(0, 0);
+        body = [head];
+        moveDir = "down";
+        score = 0;
+    
+        let fakeKey = {
+            code : "KeyS"
+        }
+        events(fakeKey)
+        gameOver = false;
     }
-    events(fakeKey)
-    gameOver = false;
+    
 }
 
 document.addEventListener("keydown", events);
-document.addEventListener("mousedown", function(ev){
-    let target = ev.target;
-    if(target === canvas && gameOver){
-        restartGame();
-    }
-})
 
 clean();
 
