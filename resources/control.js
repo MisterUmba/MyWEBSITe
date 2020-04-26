@@ -11,13 +11,13 @@ $(document).ready(function(){
   // Press button to play Snake Online version
   $("#snake_game_javascript_version").click(function(e){
     e.preventDefault();
-    window.location.href = "./projects/snake/Snakegame.html"
+    window.location.href = "projects/snake/Snakegame.html"
   });
 
   // Shortest path algorithm
   $("#shortestpathbutton").click(function(e){
     e.preventDefault();
-    window.location.href = "./projects/ShortestPath/shortPaths.html"
+    window.location.href = "projects/ShortestPath/shortPaths.html"
   });
 
   // Downloading astroid game .jar files
