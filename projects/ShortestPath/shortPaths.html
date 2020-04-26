@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shortest Path</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo"
+                aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://Henriumba.com" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"
+                    aria-hidden="true"></span>H/U<span class="glyphicon glyphicon-chevron-right"
+                    aria-hidden="true"></span></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-nav-demo">
+            <ul class="nav navbar-nav">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#interest">Interest</a></li>
+                <li><a href="#">Resume</a></li>
+                <li><a href="#">Training</a></li>
+            </ul>
+        </div>
+
+    </nav>
+
+
+    <div class="container-fluid" id="screen">
+        <div class="row">
+
+            <div id="mySidenav" class="sidenav">
+                <div id="innerSidenav">
+                    <form>
+                        <h2>Controls & Options</h2>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="gene_vertices">Generating Vertices</label>
+                                <select id="vertices" class="form-control">
+                                    <option selected>Randomly positioned vertices</option>
+                                    <option>Grid positioned vertices</option>
+                                    <option>Cluster positioned vertices</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="algo">Generating Edges</label>
+                                <select id="edges" class="form-control">
+                                    <option selected>Randomly positioned Edges</option>
+                                    <option>Grid-like Edges</option>
+                                    <option>Generated using triangulation</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="algo">Algorithms</label>
+                                <select id="Algorithms" class="form-control">
+                                    <option selected>Dijkstra SPF</option>
+                                    <option>A star</option>
+                                    <option>Bellman-Ford</option>
+                                    <option>Prim's MST</option>
+                                    <option>Kruskel's MST</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" value="Animation Mode" class="form-check-input" id="animationMode"
+                                onclick="toggleAnimmation()">
+                            <label for="animationMode">Animation Mode</label>
+                        </div>
+                        <input type="button" class="btn btn-primary" value="Generate Graph" onclick="createGraph()">
+                        <input type="button" class="btn btn-danger" value="Delete Graph" onclick="Graph = [];">
+
+                    </form>
+
+                    <h2>Graphing Tutorials</h2>
+                    <div id="instruction">
+                        <p><strong>Click</strong> onto the screen to creating a <strong>new vertices</strong></p>
+                        <p><strong>Drag one vertex to another</strong> to connect vertices with a <strong>new edge</strong>
+                        </p>
+                        <p><strong>Select vertex</strong> by <strong>clicking</strong> on it</p>
+                        <p><strong>Delete vertices</strong> and all edges connected to it by <strong>Selecting and pressing
+                                DELETE key</strong>.</p>
+                        <p><strong>Double Click</strong> to select a vertex as a <strong>starting point</strong> for an
+                            algorithm. </p>
+                    </div>
+
+                </div>
+            </div>
+            <div id="canvas_div">
+                <a id="navBtn" class="btn" onclick="closeNav()">&#9776</a>
+                <canvas id="Shortest_Path_Canvas_Screen">didn't work Sorry</canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+<link rel="stylesheet" href="ShortPathSheet.css">
+
+<script src="model.js"></script>
+<script src="view.js"></script>
+<script src="Algorithms.js"></script>
+<script src="control.js"></script>
+<script src="generateGraphs.js"></script>
+
+
+<script src="../../resources/jQuary.js"></script>
+<script src="../../resources/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../resources/bootstrap.min.css">
+
+</html>

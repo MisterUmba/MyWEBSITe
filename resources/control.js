@@ -6,15 +6,21 @@ $(document).ready(function(){
   // on Resize
   $(window).resize(function(){
       $("#head").height($(window).height());
-  })
+  });
 
   // Press button to play Snake Online version
   $("#snake_game_javascript_version").click(function(e){
     e.preventDefault();
-    window.location.href = "./snake/Snakegame.html"
+    window.location.href = "/home/thinkpad/MyWEBSITe/projects/snake/Snakegame.html"
   });
 
-  // Downloading  the .jar files
+  // Shortest path algorithm
+  $("#shortestpathbutton").click(function(e){
+    e.preventDefault();
+    window.location.href = "/home/thinkpad/MyWEBSITe/projects/ShortestPath/shortPaths.html"
+  });
+
+  // Downloading astroid game .jar files
   $("#astroidGame").click(function(e){
     e.preventDefault();
     window.location.href = "projects/Physics_Game.jar";
@@ -26,11 +32,15 @@ $(document).ready(function(){
     window.location.href = "projects/KeyStroke.exe";
   });
 
+  // Snake game
   $("#snakeGame").click(function(e){
     e.preventDefault();
     window.location.href = "projects/HenriSnake.jar";
   });
 
+
+
+  // tic tac toe game
   $("#tictactoeGame").click(function(e){
     e.preventDefault();
     window.location.href = "projects/Tic_Tac_Toe.jar";
