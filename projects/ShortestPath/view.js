@@ -85,6 +85,7 @@ function draw(){
     // Drawing all Nodes
     pen.strokeStyle = "red";
     pen.fillStyle = "white";
+    pen.textAlign = "center";
     for(let x = 0; x < Graph.length; x++){
         pen.beginPath();
         pen.moveTo(Graph[x].x , Graph[x].y);
