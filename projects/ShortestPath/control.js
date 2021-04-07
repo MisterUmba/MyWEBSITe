@@ -135,23 +135,11 @@ document.addEventListener("mouseup", function (ev) {
         } else {
             Graph.push(new Node(p.x, p.y));
             erasePath();
-
-            // for (let x = 0; x < Graph.length; x++) {
-            //     if (Graph[x].start) {
-            //         Graph[x].start = false;
-            //     }
-            // }
         }
     }
 
     EDGINGNODE = undefined;
 });
-
-function settingGoldNodeTo(node){
-    Graph.GOLD = node;
-    //if(node !== undefined)
-        //node.start = true;
-}
 
 document.addEventListener("dblclick", function (ev) {
     let pos = getMousePos(canvas, ev);
@@ -159,13 +147,10 @@ document.addEventListener("dblclick", function (ev) {
     let node = nodeAt(pos.x, pos.y);
     if (node !== undefined) {
         for (let k = 0; k < Graph.length; k++) {
-            //Graph[k].start = false;
             Graph.GOLD = undefined;
         }
 
         Graph.GOLD = node;
-        //node.start = true;
-        
         
         let algoType = document.getElementById("Algorithms");
         switch (algoType.value) {
@@ -212,12 +197,12 @@ function closeNav() {
         x.style.width = "30vw";
         x.style.margin = "10px";
         b.style.left = "30vw";
-        b.innerHTML = "&times";
+        b.innerHTML = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>';
     } else {
         x.style.width = "0px";
         x.style.margin = "0px";
         b.style.left = "0px";
-        b.innerHTML = "&#9776";
+        b.innerHTML = '<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>';
     }
 }
 
