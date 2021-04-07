@@ -86,7 +86,7 @@ function dijkstra(src) {
 
 // A* shortest path algorithm
 function astar(src, goal) {
-    console.log(src);
+    //console.log(src);
     if (goal === undefined) return;
     let open_list = []
     let close_list = []
@@ -100,7 +100,7 @@ function astar(src, goal) {
 
     while (open_list.length !== 0) {
         let curr_node = minUnvisited(open_list);
-        console.log(curr_node, Graph.indexOf(curr_node));
+        //console.log(curr_node, Graph.indexOf(curr_node));
         close_list.push(curr_node);
 
         if (curr_node === goal) {
