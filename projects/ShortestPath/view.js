@@ -92,7 +92,7 @@ function draw(){
         pen.arc(Graph[x].x , Graph[x].y, radius,0,2*Math.PI,false);
         if(Graph[x].selected)
             pen.stroke();
-        if(Graph[x].start){
+        if(Graph[x] === Graph.GOLD){
             pen.strokeStyle = "Gold";
             pen.stroke()
             pen.strokeStyle = "red";

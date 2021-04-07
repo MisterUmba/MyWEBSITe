@@ -31,8 +31,8 @@ class Node{
         this.x = x;
         this.y = y;
         this.Edges = [];
-        this.selected = false;
-        this.start = false;
+        this.selected = false;      // Colored red, used in path, 
+        //this.start = false;         // I'm not really sure why I have start. If I take it away it crashes.
     }
 
     addEdge(edge){
@@ -43,8 +43,9 @@ class Node{
 
 
 // List of Nodes
-
+// Also an object which holds GOLDen Node
 let Graph = [];
+Graph.GOLD = undefined;
 
 function rand(min, max){
     let d = max - min;

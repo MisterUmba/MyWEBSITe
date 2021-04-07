@@ -1,7 +1,6 @@
 "use strict";
 
 let EDGINGNODE = undefined;
-let GOLD = undefined;
 let ANIMATE = false;
 
 function getMousePos(canvas, evt) {
@@ -108,23 +107,26 @@ document.addEventListener("mouseup", function (ev) {
         let p = getMousePos(canvas, ev);
 
         let temp = nodeAt(p.x, p.y);
+        // Let go on another node -> Connect to new node.
         if (EDGINGNODE !== undefined && temp != undefined && EDGINGNODE !== temp) {
             connectNodes(EDGINGNODE, temp);
+        // Clicked (mouseup) on a node
         } else if (temp !== undefined) {
+            // If it was selected before -> unselect it. (toggle)
             if (temp.selected) {
                 temp.selected = false;
-                if (GOLD !== undefined) erasePath(temp);
+                if (Graph.GOLD !== undefined) erasePath(temp);      // Erase the path highlight if we unselect this node. 
             } else {
                 temp.selected = true;
-                if (GOLD !== undefined){
+                if (Graph.GOLD !== undefined){
                     if(document.getElementById("Algorithms").value === "A star") {
-                        astar(GOLD, temp);
+                        astar(Graph.GOLD, temp);
                         highlightPath(temp);
                     }else if(document.getElementById("Algorithms").value === "Dijkstra SPF"){
-                        dijkstra(GOLD);
+                        dijkstra(Graph.GOLD);
                         highlightPath(temp);
                     }else if(document.getElementById("Algorithms").value === "Bellman-Ford"){
-                        bellmanford(GOLD);
+                        bellmanford(Graph.GOLD);
                         highlightPath(temp);
                     }
                 } 
@@ -134,17 +136,22 @@ document.addEventListener("mouseup", function (ev) {
             Graph.push(new Node(p.x, p.y));
             erasePath();
 
-            for (let x = 0; x < Graph.length; x++) {
-                if (Graph[x].start) {
-                    Graph[x].start = false;
-                }
-            }
+            // for (let x = 0; x < Graph.length; x++) {
+            //     if (Graph[x].start) {
+            //         Graph[x].start = false;
+            //     }
+            // }
         }
     }
 
     EDGINGNODE = undefined;
 });
 
+function settingGoldNodeTo(node){
+    Graph.GOLD = node;
+    //if(node !== undefined)
+        //node.start = true;
+}
 
 document.addEventListener("dblclick", function (ev) {
     let pos = getMousePos(canvas, ev);
@@ -152,30 +159,30 @@ document.addEventListener("dblclick", function (ev) {
     let node = nodeAt(pos.x, pos.y);
     if (node !== undefined) {
         for (let k = 0; k < Graph.length; k++) {
-            Graph[k].start = false;
-            GOLD = undefined;
+            //Graph[k].start = false;
+            Graph.GOLD = undefined;
         }
 
-        GOLD = node;
-        node.start = true;
+        Graph.GOLD = node;
+        //node.start = true;
         
         
         let algoType = document.getElementById("Algorithms");
         switch (algoType.value) {
             case "Dijkstra SPF":
-                dijkstra(GOLD)
+                dijkstra(Graph.GOLD)
                 break;
             case "A star":
-                astar(GOLD)
+                astar(Graph.GOLD)
                 break;
             case "Bellman-Ford":
-                bellmanford(GOLD);
+                bellmanford(Graph.GOLD);
                 break;
             case "Prim's MST":
-                prim(GOLD);
+                prim(Graph.GOLD);
                 break;
             case "Kruskel's MST":
-                kruskal(GOLD);
+                kruskal(Graph.GOLD);
                 highlightTree()
                 break;
             default:
