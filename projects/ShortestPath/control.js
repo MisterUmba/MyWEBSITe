@@ -208,6 +208,20 @@ function closeNav() {
 
 closeNav(); // Make it so that when loaded the side part is open
 
+// Generating The types of graphs
+
+// Generate fully random graph
+function createFullyRandomGraph(){
+    generateRandomGraph();
+    generateRandomEdges();
+}
+
+// Generate Grid with random edges
+function createGridNodesRandomEdges(){
+    generateGridGraph();
+    generateRandomEdges();
+}
+
 function createGraph() {
     let vertexType = document.getElementById("vertices");
     switch (vertexType.value) {
