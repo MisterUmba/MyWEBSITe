@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,31 @@
     <title>Snake Game</title>
 
     <style>
-        canvas{
+        canvas {
             border: 1em solid red;
         }
 
-        .row{
+        .row {
             margin-top: 50px;
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo"
+                    aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    </button>
-                <a href="http://Henriumba.com" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>H/U<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                </button>
+                <a href="http://Henriumba.com" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"
+                        aria-hidden="true"></span>H/U<span class="glyphicon glyphicon-chevron-right"
+                        aria-hidden="true"></span></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-nav-demo">
@@ -44,20 +49,32 @@
 
     <div class="container">
         <div class="row">
-                <div class="col-xs-7">
-                    <canvas id="canvas"> Sorry Canvas did not work... </canvas>
-                </div>
-                <div class="col-xs-5">
-                    <p><strong>Description:</strong> This is the classic Snake game which I have implemented in javascript. It used
-                    this as an opertunity to learn more about javascript's classes and operations. I also learned a great deal of 
-                    javascript's syntax. </p>
-                    <p><strong>Instruction: </strong>Use the buttons <strong>W, A, S, D</strong> or the <strong>Array Keys</strong> 
-                    to control the snake. If you die <strong>click on canvas to restart</strong></p>
-                    
-                </div>
+            <div class="col-xs-7">
+                <canvas id="canvas"> Sorry Canvas did not work... </canvas>
+            </div>
+            <div class="col-xs-5">
+                <p>
+                    <strong>Description:</strong> This is the classic Snake game which I have implemented in javascript.
+                    I used
+                    this as an opportunity to learn more about javascript's classes and operations. I also learned a
+                    great deal of
+                    javascript's syntax.
+                </p>
+                <p>
+                    <strong>Instruction: </strong>Use the buttons <strong>W, A, S, D</strong> or the <strong>Array
+                        Keys</strong>
+                    to control the snake. If you die <strong>click on canvas to restart</strong>
+                </p>
+                <p>
+                    Press the <strong>P key</strong> to <strong>pause</strong> the game. When you die, press the
+                    <strong>SPACE
+                    </strong> key to respawn.
+                </p>
+
+            </div>
         </div>
     </div>
-    
+
 
 
     <script src="snakeJS.js"></script>
@@ -66,4 +83,5 @@
     <link rel="stylesheet" href="../../resources/bootstrap.min.css">
     <link rel="stylesheet" href="../../resources/gallery.css">
 </body>
+
 </html>
