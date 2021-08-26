@@ -67,6 +67,20 @@ function draw() {
         pen.fillText(line, canvas.width / 2, (canvas.height * 5) / 8);
     }
 
+    if (isGamePaused) {
+        pen.strokeStyle = 'red';
+        pen.fillStyle = 'red';
+        pen.font = "50px monospace";
+        pen.textAlign = 'center';
+        let line = "Paused Game";
+        pen.fillText(line, canvas.width / 2, canvas.height / 2);
+
+        pen.font = "20px monospace";
+        pen.fillStyle = "gold";
+        line = "Press P key to un-pause game!";
+        pen.fillText(line, canvas.width / 2, (canvas.height * 5) / 8);
+    }
+
     pen.fillStyle = 'red';
     pen.font = "50px monospace";
     pen.textAlign = 'center';
