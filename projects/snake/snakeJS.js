@@ -157,7 +157,7 @@ function events(key) {
     }
 
     // Pausing the game
-    if (key.code === "KeyP" || key.code === "Escape") {
+    if ((key.code === "KeyP" || key.code === "Escape") && !isGameOver) {
         if (isGamePaused) {
             isGamePaused = false;
         } else {
