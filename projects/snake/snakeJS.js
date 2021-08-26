@@ -135,7 +135,7 @@ function collision(p) {
 
 
 function OutofBounds() {
-    if (head.x > WIDTH || head.x < 0 || head.y < 0 || head.y > HEIGHT - 1)
+    if (head.x > WIDTH - 1 || head.x < 0 || head.y < 0 || head.y > HEIGHT - 1)
         return true;
     return false;
 }
