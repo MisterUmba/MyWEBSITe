@@ -29,7 +29,7 @@ let movements = {
     DOWN: "down"
 }
 
-let gameOver = false;
+let isGameOver = false;
 
 const canvas = document.getElementById("canvas");
 const pen = canvas.getContext("2d");
@@ -52,7 +52,7 @@ function draw() {
     pen.fillStyle = 'red';
     pen.fillRect(head.x * scale, head.y * scale, head.w * scale, head.h * scale);
 
-    if (gameOver) {
+    if (isGameOver) {
         pen.strokeStyle = 'red';
         pen.fillStyle = 'red';
         pen.font = "50px monospace";
@@ -79,7 +79,7 @@ function clean() {
 
 function update() {
     if (OutofBounds())
-        gameOver = true;
+        isGameOver = true;
 
     if (head.x == coin.x && head.y == coin.y) {
         coin.x = 5 + Math.floor(Math.random() * (WIDTH - 10));
@@ -103,7 +103,7 @@ function update() {
     let ky = undefined;
     for (let x = 0; x < body.length; x++) {
         if (body[x].x == head.x && body[x].y == head.y && body[x] != dir && body[x] != head) {
-            gameOver = true;
+            isGameOver = true;
         }
         kx = body[x].x;
         ky = body[x].y;
@@ -118,7 +118,7 @@ function update() {
 }
 
 function mainLoop() {
-    if (!gameOver) {
+    if (!isGameOver) {
         update();
     }
     draw();
@@ -147,7 +147,7 @@ function events(key) {
     }
 
     // Make the game restart by pressing SPACE
-    if (key.code === "Space" && gameOver) {
+    if (key.code === "Space" && isGameOver) {
         restartGame();
     }
 
@@ -200,16 +200,10 @@ function restartGame() {
         code: "KeyS"
     }
     events(fakeKey)
-    gameOver = false;
+    isGameOver = false;
 }
 
 document.addEventListener("keydown", events);
-// document.addEventListener("mousedown", function (ev) {
-//     let target = ev.target;
-//     if (target === canvas && gameOver) {
-//         restartGame();
-//     }
-// })
 
 clean();
 
