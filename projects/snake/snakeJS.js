@@ -30,6 +30,7 @@ let movements = {
 }
 
 let isGameOver = false;
+let isGamePaused = false;
 
 const canvas = document.getElementById("canvas");
 const pen = canvas.getContext("2d");
@@ -118,7 +119,7 @@ function update() {
 }
 
 function mainLoop() {
-    if (!isGameOver) {
+    if (!isGameOver && !isGamePaused) {
         update();
     }
     draw();
@@ -149,6 +150,15 @@ function events(key) {
     // Make the game restart by pressing SPACE
     if (key.code === "Space" && isGameOver) {
         restartGame();
+    }
+
+    // Pausing the game
+    if (key.code === "KeyP") {
+        if (isGamePaused) {
+            isGamePaused = false;
+        } else {
+            isGamePaused = true;
+        }
     }
 
     let temp = undefined;
