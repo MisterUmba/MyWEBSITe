@@ -62,7 +62,7 @@ function draw() {
 
         pen.font = "20px monospace";
         pen.fillStyle = "gold";
-        line = "Click here to restart game";
+        line = "Press SPACE to restart game";
         pen.fillText(line, canvas.width / 2, (canvas.height * 5) / 8);
     }
 
@@ -141,8 +141,14 @@ function OutofBounds() {
 }
 
 function events(key) {
+    // Provent webpage from scrolling down
     if (key.code === "ArrowDown") {
         key.preventDefault();
+    }
+
+    // Make the game restart by pressing SPACE
+    if (key.code === "Space" && gameOver) {
+        restartGame();
     }
 
     let temp = undefined;
@@ -198,12 +204,12 @@ function restartGame() {
 }
 
 document.addEventListener("keydown", events);
-document.addEventListener("mousedown", function (ev) {
-    let target = ev.target;
-    if (target === canvas && gameOver) {
-        restartGame();
-    }
-})
+// document.addEventListener("mousedown", function (ev) {
+//     let target = ev.target;
+//     if (target === canvas && gameOver) {
+//         restartGame();
+//     }
+// })
 
 clean();
 
