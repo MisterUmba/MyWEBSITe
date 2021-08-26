@@ -53,38 +53,28 @@ function draw() {
     pen.fillStyle = 'red';
     pen.fillRect(head.x * scale, head.y * scale, head.w * scale, head.h * scale);
 
-    if (isGameOver) {
-        pen.strokeStyle = 'red';
-        pen.fillStyle = 'red';
-        pen.font = "50px monospace";
-        pen.textAlign = 'center';
-        let line = "Game Over!";
-        pen.fillText(line, canvas.width / 2, canvas.height / 2);
+    if (isGameOver) displayPrompt("Game Over!", "Press SPACE to restart game");
 
-        pen.font = "20px monospace";
-        pen.fillStyle = "gold";
-        line = "Press SPACE to restart game";
-        pen.fillText(line, canvas.width / 2, (canvas.height * 5) / 8);
-    }
-
-    if (isGamePaused) {
-        pen.strokeStyle = 'red';
-        pen.fillStyle = 'red';
-        pen.font = "50px monospace";
-        pen.textAlign = 'center';
-        let line = "Paused Game";
-        pen.fillText(line, canvas.width / 2, canvas.height / 2);
-
-        pen.font = "20px monospace";
-        pen.fillStyle = "gold";
-        line = "Press P key to un-pause game!";
-        pen.fillText(line, canvas.width / 2, (canvas.height * 5) / 8);
-    }
+    if (isGamePaused) displayPrompt("Paused Game", "Press P key to un-pause game!")
 
     pen.fillStyle = 'red';
     pen.font = "50px monospace";
     pen.textAlign = 'center';
     pen.fillText(score, canvas.width / 2, canvas.height * 0.20);
+}
+
+function displayPrompt(headerText, bodyText) {
+    pen.strokeStyle = 'red';
+    pen.fillStyle = 'red';
+    pen.font = "50px monospace";
+    pen.textAlign = 'center';
+    let line = headerText;
+    pen.fillText(line, canvas.width / 2, canvas.height / 2);
+
+    pen.font = "20px monospace";
+    pen.fillStyle = "gold";
+    line = bodyText;
+    pen.fillText(line, canvas.width / 2, (canvas.height * 5) / 8);
 }
 
 function clean() {
