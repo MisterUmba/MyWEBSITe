@@ -28,7 +28,8 @@ function generateGridGraph() {
 };
 
 function generateClusterGraph() {
-    console.log("Cluster Graph")
+    Graph = [];
+    let ballsFit = Math.floor(((canvas.height * canvas.width) / (Math.pow(2 * radius, 2))) * (20 / 100));
 }
 
 
@@ -109,6 +110,7 @@ function s_curve(devi){
     return ((Math.log((41 - devi)/(devi - 25)) * (-1)) - min)/ (max - min)
 }
 
+// Randomly connect the edges
 function generateRandomEdges() {
     let devi = deviation();
 

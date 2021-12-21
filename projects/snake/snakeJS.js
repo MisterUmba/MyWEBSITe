@@ -32,6 +32,8 @@ let movements = {
 let isGameOver = false;
 let isGamePaused = false;
 
+let nextMoveDir = undefined;
+
 const canvas = document.getElementById("canvas");
 const pen = canvas.getContext("2d");
 canvas.width = 6 * 100;
@@ -82,6 +84,15 @@ function clean() {
     pen.fillRect(0, 0, WIDTH * 10, HEIGHT * 10);
 }
 
+function computerInput() {
+    if ((moveDir == movements.UP || moveDir == movements.DOWN) && (nextMoveDir == movements.LEFT || nextMoveDir == movements.RIGHT)) {
+        moveDir = nextMoveDir;
+    }
+    if ((moveDir == movements.RIGHT || moveDir == movements.LEFT) && (nextMoveDir == movements.UP || nextMoveDir == movements.DOWN)) {
+        moveDir = nextMoveDir;
+    }
+}
+
 function update() {
     if (OutofBounds())
         isGameOver = true;
@@ -99,8 +110,12 @@ function update() {
         score += 100;
     }
 
+    console.log(nextMoveDir);
+
     head.x += dir.x;
     head.y += dir.y;
+
+    computerInput();
 
     let lx = head.x;
     let ly = head.y;
@@ -122,11 +137,14 @@ function update() {
     }
 }
 
-function mainLoop() {
-    if (!isGameOver && !isGamePaused) {
-        update();
+function mainLoop(timestep) {
+    while (true) {
+        setTimeout(timestep);
+        if (!isGameOver && !isGamePaused) {
+            update();
+        }
+        draw();
     }
-    draw();
 }
 
 function collision(p) {
@@ -165,28 +183,24 @@ function events(key) {
         }
     }
 
-    let temp = undefined;
+
     if (key.code === "KeyW" || key.code === "ArrowUp") {
-        temp = movements.UP;
+        nextMoveDir = movements.UP;
     }
 
     if (key.code === "KeyS" || key.code === "ArrowDown") {
-        temp = movements.DOWN;
+        nextMoveDir = movements.DOWN;
     }
     if (key.code === "KeyD" || key.code === "ArrowRight") {
-        temp = movements.RIGHT;
+        nextMoveDir = movements.RIGHT;
     }
 
     if (key.code === "KeyA" || key.code === "ArrowLeft") {
-        temp = movements.LEFT;
+        nextMoveDir = movements.LEFT;
     }
 
-    if ((moveDir == movements.UP || moveDir == movements.DOWN) && (temp == movements.LEFT || temp == movements.RIGHT)) {
-        moveDir = temp;
-    }
-    if ((moveDir == movements.RIGHT || moveDir == movements.LEFT) && (temp == movements.UP || temp == movements.DOWN)) {
-        moveDir = temp;
-    }
+    console.log(nextMoveDir)
+
 
     switch (moveDir) {
         case "up":
@@ -217,10 +231,12 @@ function restartGame() {
     isGameOver = false;
 }
 
-document.addEventListener("keydown", events);
+document.addEventListener("keyup", events);
 
 clean();
 
 window.onload = function () {
-    setInterval(mainLoop, 1000 / 15);
+    setTimeout(1000);
+    //setInterval(mainLoop, 1000 / 10);
+    mainLoop(1000 / 10);
 }
