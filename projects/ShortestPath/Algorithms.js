@@ -3,7 +3,7 @@
 function highlightPath(node) {
     let ed = undefined;
     if (node.path.dist === Infinity) {
-        alert("There is no path to that node");
+        alert("There is no path to node " + Graph.indexOf(node));
         return;
     }
     while (node.path.last !== node) {
@@ -26,8 +26,8 @@ function highlightPath(node) {
 }
 
 function highlightTree() {
-    for(let x = 0; x < Graph.length; x ++){
-        if(Graph[x].path.last !== undefined){
+    for (let x = 0; x < Graph.length; x++) {
+        if (Graph[x].path.last !== undefined) {
             highlightPath(Graph[x]);
         }
     }
@@ -163,22 +163,22 @@ function bellmanford(src) {
 
 // Prim's MST algorithm 
 function prim() {
-    for(let x = 0; x < Graph.length; x++){
-        Graph[x].path = {dist: Infinity, last: undefined};
+    for (let x = 0; x < Graph.length; x++) {
+        Graph[x].path = { dist: Infinity, last: undefined };
     }
 
     let k = rand(0, Graph.length);
-    Graph[k].path = {dist : 0, last : Graph[k]};
+    Graph[k].path = { dist: 0, last: Graph[k] };
 
     let queue = [];
 
     Graph.forEach(item => queue.push(item));
 
-    while(queue.length !== 0){
+    while (queue.length !== 0) {
         let curr_node = minUnvisited(queue);
         console.log(Graph.indexOf(curr_node))
         curr_node.Edges.forEach(ed => {
-            if(ed.b.path.dist + ed.cost < ed.e.path.dist){
+            if (ed.b.path.dist + ed.cost < ed.e.path.dist) {
                 ed.e.path.dist = ed.cost + ed.b.path.dist;
                 ed.e.path.last = ed.b;
             }
@@ -190,10 +190,10 @@ function prim() {
     console.log(temp);
 }
 
-function findParent(v){
+function findParent(v) {
     let parent = Graph.indexOf(v.path.last);
-    while(true){
-        if(Graph[parent].path.last === Graph[parent])
+    while (true) {
+        if (Graph[parent].path.last === Graph[parent])
             return Graph[parent];
         parent = Graph.indexOf(Graph[parent].path.last)
     }
@@ -204,18 +204,18 @@ function kruskal(src) {
 
     let edge_list = [];
 
-    for(let x = 0; x < Graph.length; x ++){
-        Graph[x].path = {dist: 0, last: Graph[x]};
-        for(let y = 0; y < Graph[x].Edges.length; y ++){
-            Graph[x].Edges[y].path = {dist : Graph[x].Edges[y].cost, last : Graph[x].Edges[y] };
+    for (let x = 0; x < Graph.length; x++) {
+        Graph[x].path = { dist: 0, last: Graph[x] };
+        for (let y = 0; y < Graph[x].Edges.length; y++) {
+            Graph[x].Edges[y].path = { dist: Graph[x].Edges[y].cost, last: Graph[x].Edges[y] };
             edge_list.push(Graph[x].Edges[y]);
         }
     }
 
     let count = 0;
-    while(edge_list.length !== 0){
+    while (edge_list.length !== 0) {
         let curr_edge = minUnvisited(edge_list);
-        if(findParent(curr_edge.b) !== findParent(curr_edge.e)){
+        if (findParent(curr_edge.b) !== findParent(curr_edge.e)) {
             curr_edge.e.path.last = curr_edge.b;
             //curr_edge.selected = true;
             count++;
