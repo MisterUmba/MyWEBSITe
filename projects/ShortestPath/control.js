@@ -110,7 +110,7 @@ document.addEventListener("mouseup", function (ev) {
         // Let go on another node -> Connect to new node.
         if (EDGINGNODE !== undefined && temp != undefined && EDGINGNODE !== temp) {
             connectNodes(EDGINGNODE, temp);
-        // Clicked (mouseup) on a node
+            // Clicked (mouseup) on a node
         } else if (temp !== undefined) {
             // If it was selected before -> unselect it. (toggle)
             if (temp.selected) {
@@ -118,18 +118,18 @@ document.addEventListener("mouseup", function (ev) {
                 if (Graph.GOLD !== undefined) erasePath(temp);      // Erase the path highlight if we unselect this node. 
             } else {
                 temp.selected = true;
-                if (Graph.GOLD !== undefined){
-                    if(document.getElementById("Algorithms").value === "A star") {
+                if (Graph.GOLD !== undefined) {
+                    if (document.getElementById("Algorithms").value === "A star") {
                         astar(Graph.GOLD, temp);
                         highlightPath(temp);
-                    }else if(document.getElementById("Algorithms").value === "Dijkstra SPF"){
+                    } else if (document.getElementById("Algorithms").value === "Dijkstra SPF") {
                         dijkstra(Graph.GOLD);
                         highlightPath(temp);
-                    }else if(document.getElementById("Algorithms").value === "Bellman-Ford"){
+                    } else if (document.getElementById("Algorithms").value === "Bellman-Ford") {
                         bellmanford(Graph.GOLD);
                         highlightPath(temp);
                     }
-                } 
+                }
             }
 
         } else {
@@ -151,7 +151,7 @@ document.addEventListener("dblclick", function (ev) {
         }
 
         Graph.GOLD = node;
-        
+
         let algoType = document.getElementById("Algorithms");
         switch (algoType.value) {
             case "Dijkstra SPF":
@@ -165,9 +165,12 @@ document.addEventListener("dblclick", function (ev) {
                 break;
             case "Prim's MST":
                 prim(Graph.GOLD);
+                erasePath(Graph.GOLD)
+                highlightTree();
                 break;
             case "Kruskel's MST":
                 kruskal(Graph.GOLD);
+                erasePath(Graph.GOLD)
                 highlightTree()
                 break;
             default:
@@ -180,7 +183,7 @@ document.addEventListener("dblclick", function (ev) {
 
 // Animation
 
-function toggleAnimmation(){
+function toggleAnimmation() {
     ANIMATE = document.getElementById("animationMode").checked;
     console.log(ANIMATE);
 }
@@ -211,13 +214,13 @@ closeNav(); // Make it so that when loaded the side part is open
 // Generating The types of graphs
 
 // Generate fully random graph
-function createFullyRandomGraph(){
+function createFullyRandomGraph() {
     generateRandomGraph();
     generateRandomEdges();
 }
 
 // Generate Grid with random edges
-function createGridNodesRandomEdges(){
+function createGridNodesRandomEdges() {
     generateGridGraph();
     generateRandomEdges();
 }
