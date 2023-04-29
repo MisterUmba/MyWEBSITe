@@ -103,10 +103,10 @@ function deviation() {
     })());
 }
 
-function s_curve(devi){
+function s_curve(devi) {
     let min = -2.70805020110221, max = 2.425483229317202, base = 28.799;
-    if(devi < base) return (0.30);
-    return ((Math.log((41 - devi)/(devi - 25)) * (-1)) - min)/ (max - min)
+    if (devi < base) return (0.30);
+    return ((Math.log((41 - devi) / (devi - 25)) * (-1)) - min) / (max - min)
 }
 
 function generateRandomEdges() {

@@ -7,15 +7,15 @@ Edges
  - e: End Node
 */
 
-class Edge{
-    constructor(begin, end){
+class Edge {
+    constructor(begin, end) {
         this.b = begin;
         this.e = end;
         this.selected = false;
         this.cost = 0;
     }
 
-    setCost(cost){
+    setCost(cost) {
         this.cost = cost;
     }
 }
@@ -26,16 +26,15 @@ Nodes
    y: y axis location
 */
 
-class Node{
-    constructor(x, y){
+class Node {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.Edges = [];
         this.selected = false;      // Colored red, used in path, 
-        //this.start = false;         // I'm not really sure why I have start. If I take it away it crashes.
     }
 
-    addEdge(edge){
+    addEdge(edge) {
         this.Edges.push(edge);
     }
 }
@@ -47,14 +46,14 @@ class Node{
 let Graph = [];
 Graph.GOLD = undefined;
 
-function rand(min, max){
+function rand(min, max) {
     let d = max - min;
-    return Math.floor(Math.random()*d) + min;
+    return Math.floor(Math.random() * d) + min;
 }
 
-function floatRand(min , max){
+function floatRand(min, max) {
     let d = max - min;
-    return Math.random()*d + min;
+    return Math.random() * d + min;
 }
 
 function distance(node1, node2) {
@@ -64,8 +63,8 @@ function distance(node1, node2) {
     return Math.floor(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
 }
 
-function probability(k){
-    if(k > 1 || k < 0)
+function probability(k) {
+    if (k > 1 || k < 0)
         return -1;
     return (Math.random() < k);
 }
