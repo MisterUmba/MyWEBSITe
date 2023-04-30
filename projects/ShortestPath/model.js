@@ -52,13 +52,6 @@ class Node {
     addEdge(edge) {
         this.Edges.push(edge);
     }
-
-    rotate(theta) {
-        let x1 = (this.x * Math.cos(theta)) - (this.y * Math.sin(theta));
-        let y1 = (this.x * Math.sin(theta)) + (this.y * Math.cos(theta));
-
-        return new Node(x1, y1, this.w, this.h);
-    }
 }
 
 
@@ -86,6 +79,22 @@ function distance(node1, node2) {
     let b = Math.abs(node1.y - node2.y);
 
     return (Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
+}
+
+/**
+ * Rotates one point around another point. 
+ * @param {[Number]} bx X value of point to be rotated
+ * @param {[Number]} by Y value of point to be rotated
+ * @param {[Number]} ax X value of pivot point
+ * @param {[Number]} ay Y value of pivot point
+ * @param {[Number]} t Angle of rotation in Radians. 
+ * @returns {[Object]} Object with result x and result y. 
+ */
+function rotatePointAroundPoint(bx, by, ax, ay, t) {
+    let resultX = ((bx - ax) * Math.cos(t)) - ((by - ay) * Math.sin(t)) + ax;
+    let resultY = ((bx - ax) * Math.sin(t)) + ((by - ay) * Math.cos(t)) + ay;
+
+    return { x: resultX, y: resultY }
 }
 
 function probability(k) {
