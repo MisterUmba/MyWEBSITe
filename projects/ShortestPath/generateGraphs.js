@@ -1,3 +1,18 @@
+/* Author: Henri Umba
+ * Email: Umbamw at gmail.com
+ * 
+ * This is a project representing a graph. I've had lots of fun building this.
+ * I build this project as a way to express myself and be creative. I later 
+ * used it as my university final project, and used it again to land my first
+ * tech job. 
+ * 
+ * What a joy it is when a labour of love overtakes you and becomes a source of 
+ * success. I hope this project brings you as much joy and success it did me. 
+ * 
+ * 
+ */
+
+
 function collision(b1, b2, space) {
     return (distance(b1, b2) <= space)
 }

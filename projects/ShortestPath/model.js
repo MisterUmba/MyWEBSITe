@@ -1,3 +1,18 @@
+/* Author: Henri Umba
+ * Email: Umbamw at gmail.com
+ * 
+ * This is a project representing a graph. I've had lots of fun building this.
+ * I build this project as a way to express myself and be creative. I later 
+ * used it as my university final project, and used it again to land my first
+ * tech job. 
+ * 
+ * What a joy it is when a labour of love overtakes you and becomes a source of 
+ * success. I hope this project brings you as much joy and success it did me. 
+ * 
+ * 
+ */
+
+
 "use strict";
 
 
@@ -46,22 +61,26 @@ class Node {
 let Graph = [];
 Graph.GOLD = undefined;
 
+// Returns random integer including min, but excluding max. 
 function rand(min, max) {
     let d = max - min;
     return Math.floor(Math.random() * d) + min;
 }
 
+// Returns random float including min, excluding max.
 function floatRand(min, max) {
     let d = max - min;
     return Math.random() * d + min;
 }
 
+// Returns a float that is the distance between node1 and node2. 
 function distance(node1, node2) {
     let a = Math.abs(node1.x - node2.x);
     let b = Math.abs(node1.y - node2.y);
 
-    return Math.floor(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
+    return (Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
 }
+
 
 function probability(k) {
     if (k > 1 || k < 0)

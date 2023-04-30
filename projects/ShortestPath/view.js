@@ -1,3 +1,18 @@
+/* Author: Henri Umba
+ * Email: Umbamw at gmail.com
+ * 
+ * This is a project representing a graph. I've had lots of fun building this.
+ * I build this project as a way to express myself and be creative. I later 
+ * used it as my university final project, and used it again to land my first
+ * tech job. 
+ * 
+ * What a joy it is when a labour of love overtakes you and becomes a source of 
+ * success. I hope this project brings you as much joy and success it did me. 
+ * 
+ * 
+ */
+
+
 let canvas = document.getElementById("Shortest_Path_Canvas_Screen");
 let pen = canvas.getContext("2d");
 let radius = 20;
@@ -78,7 +93,7 @@ function draw() {
                 x: Math.floor(Math.abs(ed.b.x + ed.e.x) / 2),
                 y: Math.floor(Math.abs(ed.b.y + ed.e.y) / 2)
             }
-            pen.fillText(ed.cost, pos.x, pos.y);
+            pen.fillText(Math.floor(ed.cost), pos.x, pos.y);
         }
     }
 
