@@ -52,6 +52,13 @@ class Node {
     addEdge(edge) {
         this.Edges.push(edge);
     }
+
+    rotate(theta) {
+        let x1 = (this.x * Math.cos(theta)) - (this.y * Math.sin(theta));
+        let y1 = (this.x * Math.sin(theta)) + (this.y * Math.cos(theta));
+
+        return new Node(x1, y1, this.w, this.h);
+    }
 }
 
 
@@ -80,7 +87,6 @@ function distance(node1, node2) {
 
     return (Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
 }
-
 
 function probability(k) {
     if (k > 1 || k < 0)
