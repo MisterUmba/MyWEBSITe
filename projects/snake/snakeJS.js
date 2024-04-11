@@ -39,6 +39,18 @@ canvas.height = 4.5 * 100;
 
 let coin = new Node(5 + Math.floor(Math.random() * (WIDTH - 10)), 5 + Math.floor(Math.random() * (HEIGHT - 10)));
 
+// Function to resize the canvas based on the screen size
+function resizeCanvas() {
+    // Set canvas dimensions based on the screen size or default canvas size, whichever is smaller
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+    canvas.width = Math.min(screenWidth - 60, canvas.width);
+    canvas.height = Math.min(screenHeight - 120, canvas.height);
+
+    // Call your drawing function or any other logic that needs to react to canvas size changes
+    draw();
+}
+
 function draw() {
     clean();
 
@@ -218,9 +230,14 @@ function restartGame() {
 }
 
 document.addEventListener("keydown", events);
+document.addEventListener("resize", () => {
+    resizeCanvas();
+    restartGame();
+})
 
 clean();
 
 window.onload = function () {
     setInterval(mainLoop, 1000 / 15);
+    resizeCanvas()
 }
