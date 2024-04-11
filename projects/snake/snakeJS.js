@@ -159,7 +159,7 @@ function OutofBounds() {
 
 function events(key) {
     // Provent webpage from scrolling down
-    if (key.code === "ArrowDown") {
+    if (key.code === "ArrowDown" || key.code === "Space") {
         key.preventDefault();
     }
 
