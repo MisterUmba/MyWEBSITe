@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas-div {
+            position: fixed;
+            padding: 0;
+            margin: 0;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-div">
+        <canvas id="canvas"> Sorry canvas doesn't work on your computer. </canvas>
+    </div>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let pen = canvas.getContext('2d');
+
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+
+        function clear() {
+            // clear screen
+            pen.fillStyle = 'rgba(0, 8, 11, .099)';
+            pen.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        }
+
+        class Point {
+            constructor(x, y, w = 10, col = "gold", ag = 47.87) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.color = col;
+                this.agVol = ag / 60;
+                this.moon = [];
+            }
+
+            rot(a) {
+                const nx = this.x * Math.cos(a) - this.y * Math.sin(a);
+                const ny = this.x * Math.sin(a) + this.y * Math.cos(a);
+                this.x = nx;
+                this.y = ny;
+            }
+
+            rotOther(other, secondsPassed) {
+                let k = { x: other.x, y: other.y }
+                this.minus(other);
+                this.rot(this.agVol * secondsPassed);
+                this.add(k);
+            }
+
+            minus(other) {
+                this.x -= other.x;
+                this.y -= other.y;
+            }
+
+            add(other) {
+                this.x += other.x;
+                this.y += other.y;
+            }
+
+            update(po, secondsPassed) {
+                this.rotOther(po, secondsPassed);
+
+                this.moon.forEach(e => {
+                    e.rotOther({ x: 0, y: 0 }, secondsPassed);
+                });
+            }
+
+            draw(pen, scale) {
+                // draw point. 
+                pen.fillStyle = this.color;
+                pen.beginPath();
+                pen.arc(this.x, this.y, (this.w / 2) * scale, 0, Math.PI * 2);
+                pen.fill();
+
+                this.moon.forEach(m => {
+                    pen.save();
+                    pen.translate(this.x, this.y);
+                    m.rotOther({ x: 0, y: 0 }, secondsPassed);
+                    m.draw(pen, scale);
+                    pen.restore();
+                });
+            }
+
+            add_moon(m) {
+                this.moon.push(m);
+            }
+        }
+
+        addEventListener("resize", event => {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        })
+
+        const c_w = canvas.width / 2;
+        const c_h = canvas.height / 2;
+        const gameObjects = [
+            new Point(c_w - (c_h) * 0 / 8, c_h, 10 * /*109*/ 20, "gold", 0),    // Sun
+            new Point(c_w - (c_h) * 1.8 / 8, c_h, 10 * 0.4, "#78777d", 47.87), // Mercury
+            new Point(c_w - (c_h) * 2 / 8, c_h, 10 * 0.9, "#dcc8a5", 35.02), // Venus
+            new Point(c_w - (c_h) * 2.3 / 8, c_h, 10 * 1, "#17393d", 29.78), // Earth
+            new Point(c_w - (c_h) * 2.8 / 8, c_h, 10 * 0.5, "#bf8856", 24.077), // Mars
+            new Point(c_w - (c_h) * 4.1 / 8, c_h, 10 * 11.2, "#5f2411", 13.07), // Jupiter
+            new Point(c_w - (c_h) * 6 / 8, c_h, 10 * 9.4, "#f4bf6b", 9.69), // Saturn
+            new Point(c_w - (c_h) * 7.3 / 8, c_h, 10 * 4, "#42c1f2", 6.81), // Uranus
+            new Point(c_w - (c_h) * 8.2 / 8, c_h, 10 * 3.9, "#012c67", 5.43), // Neptune
+        ]
+        gameObjects[3].add_moon(new Point(canvas.height / 100, 0, 10 * 0.2, "#c9d7e8", 100));
+        gameObjects[4].add_moon(new Point(canvas.height / 240, 0, 10 * 0.2, "#c9d7e8", 200));
+        gameObjects[4].add_moon(new Point(canvas.height / 100, 0, 10 * 0.2, "#c9d7e8", 80));
+
+        // for (let i = 1; i < 67; i++) {
+        //     gameObjects[5].add_moon(new Point(canvas.height / ((i * 30) / 30), 0, 10 * 0.2, "#c9d7e8", 100 * Math.random() + 100))
+        // }
+        const scale = canvas.height / canvas.width;
+
+        let secondsPassed;
+        let oldTimeStamp = 0;
+        let fps;
+        function drawScreen(timeStamp) {
+            secondsPassed = (timeStamp - oldTimeStamp) / 1000;
+            oldTimeStamp = timeStamp;
+
+            clear();
+            gameObjects.forEach(e => {
+                e.update(gameObjects[0], secondsPassed);
+                e.draw(pen, scale);
+            });
+
+            window.requestAnimationFrame(drawScreen);
+        }
+
+        window.requestAnimationFrame(drawScreen)
+
+    </script>
+</body>
+
+</html>

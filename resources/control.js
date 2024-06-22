@@ -15,7 +15,13 @@ $(document).ready(function(){
   });
 
   // Shortest path algorithm
-  $("#shortestpathbutton").click(function(e){
+  $("#orbitbutton").click(function (e) {
+    e.preventDefault();
+    window.location.href = "projects/orbit/orbit.html"
+  });
+
+  // Shortest path algorithm
+  $("#shortestpathbutton").click(function (e) {
     e.preventDefault();
     window.location.href = "projects/ShortestPath/shortPaths.html"
   });
