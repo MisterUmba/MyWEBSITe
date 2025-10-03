@@ -44,8 +44,6 @@ $(document).ready(function () {
     window.location.href = "projects/HenriSnake.jar";
   });
 
-
-
   // tic tac toe game
   $("#tictactoeGame").click(function (e) {
     e.preventDefault();

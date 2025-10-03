@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine Sweeper</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://Henriumba.com" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>H/U<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-nav-demo">
+      <ul class="nav navbar-nav">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#interest">Interest</a></li>
+        <li><a href="#">Resume</a></li>
+        <li><a href="#">Training</a></li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <!-- Game Area -->
+
+
+  <div class="container">
+    <div class="row">
+      <div id="canvas-div" class="col-xm-6">
+        <canvas id="canvas" width="1080" height="900">
+          Sorry, canvas doesn't work in your browser.
+        </canvas>
+      </div>
+      <div class="col-xm-6">
+        <h4><strong>Mine Sweeper</strong></h4>
+        <p>This is the classic game where you attempt to clear the board of all booms</p>
+        <h4><strong>Controls</strong></h4>
+        <p><strong>Left-Click:</strong> Reveals current tile. If it's a boom game over. </p>
+        <p>left-clicking on a already reveal tile while reveal the tiles around it</p>
+        <p><strong>Right-Click:</strong> Places a flag on the current tile. If the current tile already has a flag, the it is removed. </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Jquery -->
+  <script src="../../resources/jQuary.js"></script>
+  <!-- BootStrap js -->
+  <script src="../../resources/bootstrap.min.js"></script>
+  <!-- BootStrap Css -->
+  <link rel="stylesheet" href="../../resources/bootstrap.min.css">
+
+  <!-- My style -->
+  <link rel="stylesheet" href="../../resources/gallery.css">
+
+  <style>
+    canvas {
+      border: 1em solid red;
+    }
+
+    .row {
+      margin-top: 50px;
+    }
+
+    /* body {
+      padding-top: 30px;
+      background-color: #282828;
+      color: #E8e8e8;
+      font-family: "Archivo Narrow";
+      font-size: 16px;
+    } */
+  </style>
+</body>
+
+</html>
