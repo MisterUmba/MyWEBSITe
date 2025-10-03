@@ -14,7 +14,7 @@ function clearScreen() {
   pen.save();
   pen.fillStyle = 'black';
   pen.fillRect(0, 0, canvas.width, canvas.height);
-  pen.retore();
+  pen.restore();
 }
 
 function drawGame() {
@@ -55,7 +55,7 @@ function resize() {
   canvas.width = window.innerWidth * 0.5;
   canvas.height = window.innerHeight * 0.5;
   clearScreen();
-  drawCurrentGameMode();
+  draw();
 }
 
 window.addEventListener('resize', resize);
