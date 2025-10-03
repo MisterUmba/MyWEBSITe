@@ -49,6 +49,8 @@ function draw() {
       drawMenuOptions();
       break;
   }
+
+  requestAnimationFrame(draw);
 }
 
 function resize() {
@@ -59,6 +61,9 @@ function resize() {
 }
 
 window.addEventListener('resize', resize);
+window.addEventListener('load', ev => {
+  requestAnimationFrame(draw);
+})
 
 resize();
 clearScreen();
