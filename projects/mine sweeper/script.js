@@ -2,7 +2,8 @@ const GAME_STATES = {
   MENU: 'menu',
   MENU_OPTION: 'menu_options',
   PLAYING: 'playing',
-  PLAYING_OPTION: 'game_difficulty'
+  PLAYING_OPTION: 'game_difficulty',
+  PLAYING_PAUSE: 'game_paused'
 }
 
 let GAME_MODE = GAME_STATES.MENU;
@@ -25,6 +26,10 @@ function drawGameOptions() {
   console.log("Choosing the game difficulty");
 }
 
+function drawPausedMenu() {
+  console.log("Game paused");
+}
+
 function drawMenu() {
   console.log("On the Main Menu");
 }
@@ -41,6 +46,9 @@ function draw() {
       break;
     case GAME_STATES.PLAYING_OPTION:
       drawGameOptions();
+      break;
+    case GAME_STATES.PLAYING_PAUSE:
+      drawPausedMenu();
       break;
     case GAME_STATES.MENU:
       drawMenu();
