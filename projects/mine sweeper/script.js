@@ -62,8 +62,9 @@ function draw() {
 }
 
 function resize() {
+  // Making sure aspect ratio is 16w by 9h
   canvas.width = window.innerWidth * 0.5;
-  canvas.height = window.innerHeight * 0.5;
+  canvas.height = canvas.width * .5625;
   clearScreen();
   draw();
 }
