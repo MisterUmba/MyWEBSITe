@@ -1,11 +1,12 @@
 class Node {
-  constructor(x, y, width, height, color = "white", text = "") {
+  constructor(x, y, width, height, color = "white", text = "", name = "") {
     this.x = x;
     this.y = y;
     this.w = width;
     this.h = height;
     this.color = color;
     this.text = text;
+    this.name = name;
   }
 
   draw(x = this.x, y = this.y, w = this.w, h = this.h, c = this.color, t = this.text) {
