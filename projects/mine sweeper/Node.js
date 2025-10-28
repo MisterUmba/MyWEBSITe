@@ -30,3 +30,24 @@ class ViewGrap {
     this.nodes.forEach(node => node.draw());
   }
 }
+
+
+function drawGame() {
+  console.log("playing the game.")
+}
+
+function drawGameOptions() {
+  console.log("Choosing the game difficulty.");
+}
+
+function drawPausedMenu() {
+  console.log("Game paused.");
+}
+
+function drawMenu() {
+  console.log("On the Main Menu.");
+}
+
+function drawMenuOptions() {
+  console.log("Picking menu options. (i.e. Muting sounds)");
+}
