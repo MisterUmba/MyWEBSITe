@@ -24,7 +24,7 @@ class ViewNode {
   }
 }
 
-class ViewGrap {
+class ViewGraph {
   constructor(nodes = []) {
     this.nodes = nodes;
   }
@@ -46,27 +46,27 @@ class View {
 
   initiate() {
     // menu
-    let playing = new ViewGrap([
+    let playing = new ViewGraph([
       new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Playing", "Playing")
     ]);
     this.viewGraps[GAME_STATES.PLAYING] = playing;
 
-    let playingOptions = new ViewGrap([
+    let playingOptions = new ViewGraph([
       new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Options", "PlayingOptions")
     ]);
     this.viewGraps[GAME_STATES.PLAYING_OPTION] = playingOptions;
 
-    let playingPause = new ViewGrap([
+    let playingPause = new ViewGraph([
       new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Pause", "Pause")
     ]);
     this.viewGraps[GAME_STATES.PLAYING_PAUSE] = playingPause;
 
-    let menu = new ViewGrap([
+    let menu = new ViewGraph([
       new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "New Game", "NewGame")
     ]);
     this.viewGraps[GAME_STATES.MENU] = menu;
 
-    let menuOption = new ViewGrap([
+    let menuOption = new ViewGraph([
       new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Menu Options", "MenuOptions")
     ]);
     this.viewGraps[GAME_STATES.MENU_OPTION] = menuOption;

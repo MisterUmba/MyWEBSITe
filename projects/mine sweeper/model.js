@@ -18,9 +18,9 @@ class Cell {
   }
 
   reveal() {
-    if (this.value == Cell_values.BOOM) {
+    if (this.value === Cell_values.BOOM) {
       this.status = Cell_Status.EXPLODE;
-    } else if (this.value == Cell_values.BLANK) {
+    } else if (this.value === Cell_values.BLANK) {
       this.status = Cell_Status.REVEAL;
     } else {
       this.status = Cell_Status.NUMBER;
@@ -63,7 +63,7 @@ class Model {
       const randx = Math.floor(Math.random() * this.columns);
       const randy = Math.floor(Math.random() * this.rows);
 
-      if (this.grid[randy][randx].value == Cell_values.BLANK) {
+      if (this.grid[randy][randx].value === Cell_values.BLANK) {
         this.grid[randy][randx].value = Cell_values.BOOM;
         numOfBooms--;
       }

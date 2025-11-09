@@ -26,7 +26,7 @@ function drawScreen(timeStamp) {
   window.requestAnimationFrame(drawScreen);
 }
 
-window.addEventListener('load', ev => {
+window.addEventListener('load', () => {
   requestAnimationFrame(drawScreen);
 });
 
