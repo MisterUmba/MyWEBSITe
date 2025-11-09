@@ -44,9 +44,33 @@ class View {
     this.initiate();
   }
 
-function drawGameOptions() {
-  console.log("Choosing the game difficulty.");
-}
+  initiate() {
+    // menu
+    let playing = new ViewGrap([
+      new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Playing", "Playing")
+    ]);
+    this.viewGraps[GAME_STATES.PLAYING] = playing;
+
+    let playingOptions = new ViewGrap([
+      new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Options", "PlayingOptions")
+    ]);
+    this.viewGraps[GAME_STATES.PLAYING_OPTION] = playingOptions;
+
+    let playingPause = new ViewGrap([
+      new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Pause", "Pause")
+    ]);
+    this.viewGraps[GAME_STATES.PLAYING_PAUSE] = playingPause;
+
+    let menu = new ViewGrap([
+      new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "New Game", "NewGame")
+    ]);
+    this.viewGraps[GAME_STATES.MENU] = menu;
+
+    let menuOption = new ViewGrap([
+      new ViewNode(canvas.width / 2, canvas.height / 2, canvas.width / 3, canvas.height / 5, "white", "Menu Options", "MenuOptions")
+    ]);
+    this.viewGraps[GAME_STATES.MENU_OPTION] = menuOption;
+  }
 
   clearScreen() {
     pen.save();
