@@ -1,4 +1,7 @@
-class Node {
+const canvas = document.getElementById("canvas");
+const pen = canvas.getContext('2d');
+
+class ViewNode {
   constructor(x, y, width, height, color = "white", text = "", name = "") {
     this.x = x;
     this.y = y;
@@ -32,22 +35,36 @@ class ViewGrap {
 }
 
 
-function drawGame() {
-  console.log("playing the game.")
-}
+class View {
+  constructor(model, game_state) {
+    this.model = model;
+    this.gameState = game_state;
+
+    this.viewGraps = new Map();
+    this.initiate();
+  }
 
 function drawGameOptions() {
   console.log("Choosing the game difficulty.");
 }
 
-function drawPausedMenu() {
-  console.log("Game paused.");
-}
+  clearScreen() {
+    pen.save();
+    pen.fillStyle = 'black';
+    pen.fillRect(0, 0, canvas.width, canvas.height);
+    pen.restore();
+  }
 
-function drawMenu() {
-  console.log("On the Main Menu.");
-}
+  draw() {
+    this.viewGraps[this.gameState].draw();
+  }
 
-function drawMenuOptions() {
-  console.log("Picking menu options. (i.e. Muting sounds)");
+  resize() {
+    // Making sure aspect ratio is 16w by 9h
+    canvas.width = window.innerWidth * 0.5;
+    canvas.height = canvas.width * .5625;
+    this.clearScreen();
+    // this.draw();
+  }
+
 }
