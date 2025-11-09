@@ -32,7 +32,24 @@ window.addEventListener('load', () => {
 
 // Catch input from user and return which node was pressed. 
 canvas.addEventListener("mouseup", event => {
-  console.log(event);
+  // Found out where is being clicked in the canvas.
+  const bb = canvas.getBoundingClientRect();
+  const clx = event.clientX - (bb.left + 16) ;
+  const cly = event.clientY - (bb.top + 16);
+
+  // Found out what is at the position being clicked based on game mode.
+  let name = undefined;
+  viewer.viewGraps[GAME_MODE].nodes.forEach(vn => {
+    if(vn.x < clx && vn.x + vn.w > clx && vn.y < cly && vn.y + vn.h > cly) {
+      name = vn.name;
+    }
+  });
+
+
+  console.log(name);
+
+  // Run the right code based on click event item name.
+
 });
 
 
